@@ -51,4 +51,27 @@ text-shadow: 0px 1px 1px #fff;
     color: #2b2b2b;
 }
 
+#lb-status-countdown {
+    box-shadow: inset 50px 0 140px 23px rgba(200, 200, 200, 0.75);
+    h1, h2, h3, h4, h5, h6 {
+        color: white;
+        text-shadow: 1px 1px @gray-darker;
+    }
+}
+
 /***** SETTINGS TAB *****/
+
+#settings-about {
+    margin: 0;
+    padding: 5px;
+    background-color: darken(@gray-lighter, 5%) !important;
+    text-shadow: 1px 1px white;
+
+    a {
+        color: @gray-dark;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

@@ -11,24 +11,3 @@
 @btn-theme-bg: @gray-dark;
 @btn-theme-border: @gray-darker;
 
-// -------------------------------
-// Overrides
-// -------------------------------
-
-label {
-	font-weight: normal;
-	font-size: @label-font-size;
-	color: @label-color;
-}
-
-.form-group {
-	margin: 0;
-	border-top: solid 1px @border-color-base;
-	border-bottom: solid 1px @border-color-accent;
-	padding: @padding-large-vertical;
-}
-
-.btn-theme {
-	.button-variant(@btn-theme-color; @btn-theme-bg; @btn-theme-border);
-	#gradient > .vertical(lighten(@btn-theme-bg, 10%), @btn-theme-bg);
-}

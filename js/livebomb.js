@@ -132,13 +132,21 @@ $(function() {
                 $('[href="#lb-page-status"]').tab('show');
 
                 $('#button-icon').css('color', 'red');
-                $('#show-name').html(storage.get('title'));
 
-                if (sendMessage === true && storage.get('notification') === true) {
-                    chrome.notifications.create('notify', options, function() {
-                        sendMessage = false;
-                    });
-                }
+                $.each(siteData.sites, function(key, site) {
+                    if (site.isLive) {
+                        $('#show-name').html(site.liveTitle);
+                        $('#lb-status-live').css('background-image', 'url(' + site.liveImage + ')');
+                    }
+                });
+
+                $.each(siteData.sites, function(key, site) {
+                    if (storage.get('notification') && site.isLive && site.sendMessage) {
+                        chrome.notifications.create('notify', options, function() {
+                            site.sendMessage = false;
+                        });
+                    }
+                });
             } else if (siteData.countdown) {
                 setCountdown(siteData.countdown);
 

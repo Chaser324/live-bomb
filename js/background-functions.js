@@ -186,7 +186,7 @@ var liveRoutine = function() {
                 chrome.notifications.create(site.chatUrl, options, function(){});
 
                 if (storage.get('notification-sound') === true) {
-                    audio.playSound(storage.get('sound'));
+                    audio.playSound(storage.get('sound'), storage.get('notification-volume'));
                 }
             } else if (site.isLive === false) {
                 site.sendMessage = true;

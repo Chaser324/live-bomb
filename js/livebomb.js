@@ -222,7 +222,7 @@ $(function() {
 
     //Test Sounds
     $('[data-playsound]').click(function() {
-        audio.playSound($(this).attr('data-playsound'));
+        audio.playSound($(this).attr('data-playsound'), storage.get('notification-volume'));
     });
 
     // Windows Hide Scrollbar Hack

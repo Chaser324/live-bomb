@@ -11,6 +11,7 @@ var preferences = {
     'timer': {default: 300000, type: 'range'},
     'theme': {default: 'dark', type: 'radio'},
     'notification-sound': {default: true, type: 'checkbox'},
+    'notification-volume': {default: 100, type: 'range'},
     'sound': {default: 'dropbomb', type: 'radio'},
     'schedule-badge': {default: true, type: 'checkbox'},
     'show-schedule': {default: true, type: 'checkbox'},
@@ -26,7 +27,7 @@ var preferences = {
 //Initialize audio handler object.
 var audio = {};
 audio.currentAudio = null;
-audio.playSound = function(sound) {
+audio.playSound = function(sound, volume) {
     //Stop any current sound.
     if (this.currentAudio) {
         this.currentAudio.pause();
@@ -38,7 +39,7 @@ audio.playSound = function(sound) {
     this.currentAudio = document.createElement('audio');
     document.body.appendChild(this.currentAudio);
     this.currentAudio.autoplay = true;
-    this.currentAudio.volume = 1.0;
+    this.currentAudio.volume = volume / 100;
     this.currentAudio.src = 'sounds/' + sound + '.ogg';
 };
 audio.stopSound = function() {

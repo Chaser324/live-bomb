@@ -7,7 +7,7 @@ siteData.sites.gb = {
     'name': 'Giant Bomb',
     'upcomingSetting': 'gb-upcoming',
     'liveSetting': 'gb-live',
-    'dataUrl': 'http://www.giantbomb.com/upcoming_json',
+    'dataUrl': 'https://www.giantbomb.com/upcoming_json',
     'chatUrl': 'http://www.giantbomb.com/chat',
     'isLive': false,
     'sendMessage': false,

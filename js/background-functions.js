@@ -127,7 +127,7 @@ var getScheduleCallback = function(site, data) {
             }
 
             var eventName = val.title;
-            var eventImage = "'" + val.image + "'";
+            var eventImage = "'http://" + val.image + "'";
 
             // Assemble Output
             siteData.output +=  '<li style="background-image: url('+ eventImage +')"><h4>' + eventName +

@@ -118,7 +118,7 @@ var getScheduleCallback = function(site, data) {
                 eventType = '<i class="fa fa-question-circle fa-lg"></i> Something ';
             }
 
-            dt.zone(moment().zone());
+            dt.utcOffset(moment().utcOffset());
 
             if (today == dt) {
                 scheduleDate = dt.fromNow();

@@ -5,8 +5,8 @@
     "fontawesome": "~4.1.0",
     "jquery": "~3.2.0",
     "jQuery-Storage-API": "https://github.com/julien-maurel/jQuery-Storage-API.git#~1.7.2",
-    "moment": "~2.7.0",
-    "moment-timezone": "~0.1.0",
+    "moment": "~2.18.1",
+    "moment-timezone": "~0.5.11",
     "jquery.slimscroll": "~1.3.1",
     "bootstrap": "~3.2.0"
   },

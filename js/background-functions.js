@@ -128,10 +128,16 @@ var getScheduleCallback = function(site, data) {
 
             var eventName = val.title;
             var eventImage = "'http://" + val.image + "'";
+            
+            var eventPremium = "";
+            if (val.premium)
+            {
+                eventPremium = '<h5 class="premium"><i class="fa fa-star"></i> Premium</h5>';
+            }
 
             // Assemble Output
             siteData.output +=  '<li style="background-image: url('+ eventImage +')"><h4>' + eventName +
-                '</h4> <p>'+ eventType + scheduleDate +'</p></li>';
+                '</h4>' + eventPremium + '<p>'+ eventType + scheduleDate +'</p></li>';
 
             scheduleCounter += 1;
         });

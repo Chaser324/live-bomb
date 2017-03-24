@@ -1,6 +1,6 @@
 color: #f5f5f5;
 background-image:url(/images/dark-noise.png);
-//text-shadow:1px 0px 3px #333;
+text-shadow: 1px 0px 3px rgba(0,0,0,0.7);
 
 /***** TAB BUTTONS *****/
 
@@ -24,8 +24,17 @@ background-image:url(/images/dark-noise.png);
 
 #lb-page-schedule {
     li {
-        .box-shadow(inset 0px 0px 140px 3px rgba(0,0,0,0.75));
+        .box-shadow(inset 0px 0px 200px 3px rgba(0,0,0,0.95));
         border-top: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+#lb-schedule-items {
+    ul {
+        h4 {
+            font-weight: bold;
+            text-shadow: 0 2px 2px rgba(0,0,0,0.7);
+        }
     }
 }
 

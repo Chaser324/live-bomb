@@ -136,7 +136,7 @@ $(function() {
                 $.each(siteData.sites, function(key, site) {
                     if (site.isLive) {
                         $('#show-name').html(site.liveTitle);
-                        $('#lb-status-live').css('background-image', 'url(' + site.liveImage + ')');
+                        $('#lb-status-live').css('background-image', 'url(http://' + site.liveImage + ')');
                     }
                 });
 

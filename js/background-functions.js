@@ -123,7 +123,16 @@ var getScheduleCallback = function(site, data) {
             if (today == dt) {
                 scheduleDate = dt.fromNow();
             } else {
-                scheduleDate = '- ' + dt.calendar();
+                if (storage.get('24h-clock')) {
+                    scheduleDate = '- ' + dt.calendar(null, {
+                        sameDay: '[Today at] H:mm',
+                        nextDay: '[Tomorrow at] H:mm',
+                        sameElse: 'H:mm'
+                    });
+                }
+                else {
+                    scheduleDate = '- ' + dt.calendar();
+                }
             }
 
             var eventName = val.title;

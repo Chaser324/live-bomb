@@ -22,6 +22,8 @@ var preferences = {
     'gs-live': {default: true, type: 'checkbox'},
     'cv-upcoming': {default: true, type: 'checkbox'},
     'cv-live': {default: true, type: 'checkbox'},
+
+    '24h-clock': {default: false, type: 'checkbox'}
 };
 
 //Initialize audio handler object.

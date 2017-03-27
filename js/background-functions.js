@@ -79,7 +79,7 @@ var getSchedule = function() {
     $.each(siteData.sites, function(key, site) {
         if (storage.get(site.upcomingSetting)) {
             getScheduleDone.push($.getJSON(site.dataUrl, function(data) {
-                getScheduleCallback(site, data)
+                getScheduleCallback(site, data);
             }));
         }
     });
@@ -118,8 +118,7 @@ var getScheduleCallback = function(site, data) {
                 eventType = '<i class="fa fa-question-circle fa-lg"></i> Something ';
             }
 
-            dt.utcOffset(moment().utcOffset());
-
+            dt.utcOffset(getUtcOffset());
             if (today == dt) {
                 scheduleDate = dt.fromNow();
             } else {
@@ -226,4 +225,18 @@ var scheduleRoutine = function() {
     });
 
     return getScheduleDone.promise();
+};
+
+/**
+ * Get UTC offset from storage, if set and a number. Otherwise return
+ * automatic value from moment.js.
+ * Used when getting offset for timezone adjustment.
+ */
+var getUtcOffset = function(){
+
+    var storageOffset = storage.get('utc-offset');
+    if(storageOffset == null || isNaN(storageOffset)) {
+        return moment().utcOffset();
+    }
+    return storageOffset;
 };

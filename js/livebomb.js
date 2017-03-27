@@ -40,6 +40,19 @@ $(function() {
         });
     };
 
+    /**
+     * Get offset from storage. If value is not set return "auto".
+     * Used when updating the select option to previously stored value.
+     */
+    var getUtcOffsetFromStorage = function(){
+
+        var storageOffset = storage.get('utc-offset');
+        if(storageOffset == null) {
+            return "auto"
+        }
+        return storageOffset;
+    };
+
     var pluralize = function(number, string) {
         return '' + number + string + (number !== 1 ? 's' : '');
     };
@@ -56,6 +69,9 @@ $(function() {
     if (navigator.appVersion.indexOf('Mac') !== -1) {
         $('body').css('border','1.5px solid');
     }
+
+    //select current value utc-offset
+    $("#select-utc-offset").val(getUtcOffsetFromStorage());
 
     //Initialize settings display
     $.each(preferences, function(name, val) {
@@ -85,7 +101,7 @@ $(function() {
     }
 
     //Save Preferences automatically
-    $('input').change(function() {
+    $('input, select').change(function() {
         //Display "Saved" message.
         storage.set('preferences','user-preference');
         cfgMessage.fadeIn(700).fadeTo(350, 1).fadeOut(400);
@@ -98,6 +114,8 @@ $(function() {
             $('body').trigger('checkBadge');
         } else if (this.type == "range") {
             storage.set(this.name, this.value);
+        } else if (this.type == "select-one") {
+            storage.set(this.name, this.options[this.selectedIndex].value);
         }
     });
 

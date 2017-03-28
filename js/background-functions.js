@@ -91,6 +91,7 @@ var getScheduleCallback = function(site, data) {
     if (data.upcoming.length > 0) {
         var eventType,
             scheduleDate,
+            clockFormat = getClockFormat();
             liveShows = [];
 
         $.each(data.upcoming, function(key, val) {
@@ -124,9 +125,10 @@ var getScheduleCallback = function(site, data) {
             } else {
                 if (storage.get('24h-clock')) {
                     scheduleDate = '- ' + dt.calendar(null, {
-                        sameDay: '[Today at] H:mm',
-                        nextDay: '[Tomorrow at] H:mm',
-                        sameElse: 'H:mm'
+                        sameDay: '[Today at] '+clockFormat,
+                        nextDay: '[Tomorrow at] '+clockFormat,
+                        nextWeek: 'dddd ' +clockFormat,
+                        sameElse: clockFormat
                     });
                 }
                 else {
@@ -226,6 +228,14 @@ var scheduleRoutine = function() {
 
     return getScheduleDone.promise();
 };
+
+var getClockFormat = function(){
+
+    if(storage.get('24h-clock')){
+        return 'HH:mm';
+    }
+    return 'h:mm:ss a';
+}
 
 /**
  * Get UTC offset from storage, if set and a number. Otherwise return

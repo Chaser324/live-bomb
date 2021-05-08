@@ -79,7 +79,7 @@ var getSchedule = function() {
     $.each(siteData.sites, function(key, site) {
         if (storage.get(site.upcomingSetting)) {
             getScheduleDone.push($.getJSON(site.dataUrl, function(data) {
-                getScheduleCallback(site, data)
+                getScheduleCallback(site, data);
             }));
         }
     });
@@ -91,6 +91,7 @@ var getScheduleCallback = function(site, data) {
     if (data.upcoming.length > 0) {
         var eventType,
             scheduleDate,
+            clockFormat = getClockFormat();
             liveShows = [];
 
         $.each(data.upcoming, function(key, val) {
@@ -118,16 +119,16 @@ var getScheduleCallback = function(site, data) {
                 eventType = '<i class="fa fa-question-circle fa-lg"></i> Something ';
             }
 
-            dt.utcOffset(moment().utcOffset());
-
+            dt.utcOffset(getUtcOffset());
             if (today == dt) {
                 scheduleDate = dt.fromNow();
             } else {
                 if (storage.get('24h-clock')) {
                     scheduleDate = '- ' + dt.calendar(null, {
-                        sameDay: '[Today at] H:mm',
-                        nextDay: '[Tomorrow at] H:mm',
-                        sameElse: 'H:mm'
+                        sameDay: '[Today at] '+clockFormat,
+                        nextDay: '[Tomorrow at] '+clockFormat,
+                        nextWeek: 'dddd ' +clockFormat,
+                        sameElse: clockFormat
                     });
                 }
                 else {
@@ -226,4 +227,26 @@ var scheduleRoutine = function() {
     });
 
     return getScheduleDone.promise();
+};
+
+var getClockFormat = function(){
+
+    if(storage.get('24h-clock')){
+        return 'HH:mm';
+    }
+    return 'h:mm:ss a';
+}
+
+/**
+ * Get UTC offset from storage, if set and a number. Otherwise return
+ * automatic value from moment.js.
+ * Used when getting offset for timezone adjustment.
+ */
+var getUtcOffset = function(){
+
+    var storageOffset = storage.get('utc-offset');
+    if(storageOffset == null || isNaN(storageOffset)) {
+        return moment().utcOffset();
+    }
+    return storageOffset;
 };

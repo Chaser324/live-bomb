@@ -23,7 +23,8 @@ var preferences = {
     'cv-upcoming': {default: true, type: 'checkbox'},
     'cv-live': {default: true, type: 'checkbox'},
 
-    '24h-clock': {default: false, type: 'checkbox'}
+    '24h-clock': {default: false, type: 'checkbox'},
+    'utc-offset': {default: "auto", type: 'select-one'}
 };
 
 //Initialize audio handler object.
